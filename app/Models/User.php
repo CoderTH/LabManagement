@@ -29,4 +29,20 @@ class User extends \Illuminate\Foundation\Auth\User implements JWTSubject,Authen
     {
         return self::getKey();
     }
+
+    public static function getPermi($id) {
+        try {
+            // $data = self::join('permissions','user.permission_id','permissions.permission_id')
+            //             ->select('permission.permission_id')
+            //             ->where('work_id',$id)
+            //             ->get();
+            $data = self::select('permission_id')
+                        ->where('work_id',$id)
+                        ->get();
+            $permi = $data[0]->permission_id;
+            return $permi;
+        } catch(Exception $e){
+            logError('获取用户权限失败',[$e->getMessage()]);
+        }
+    }
 }
