@@ -49,7 +49,7 @@ class FormSucController extends Controller
      * @return void
      */
     public function getSucFormInfo(GetFormInfoRequest $request) {
-        $form_id = $requesut['form_id'];
+        $form_id = $request['form_id'];
         $type_id = Form::getFrom_Type($form_id);
 
         switch ($type_id) {
@@ -85,7 +85,7 @@ class FormSucController extends Controller
         $value = $request['value'];
         $work_id = '10086';
             //$work_id = auth('api')->user()->work_id
-        $res = Form::SearchFormView($work_id,$value);
+        $res = Form::SearchFormSuc($work_id,$value);
 
         return $res ?
                 \json_success('参数'.$value.'搜索成功',$res,'200') :

@@ -39,8 +39,8 @@ class FormFailController extends Controller
             $res = Form::FailFormList($work_id,$class);
 
            return $res ?
-           \json_success('表单列表查询成功',$res,'200') :
-           \json_fail('该表单列表为空',null,'100');
+           \json_success('表单列表获取成功',$res,'200') :
+           \json_fail('该表单列表获取失败',null,'100');
 
         } catch(Exception $e){
             logError('FormFailController\getFormList接口调用失败',[$e->getMessage()]);
@@ -60,13 +60,13 @@ class FormFailController extends Controller
 
         switch ($type_id) {
             case 1:
-                $res = LabBorrowing::getFailInfo_l($form_id);
+                $res = LabBorrowing::getFormInfo_l($form_id);
                 break;
             case 3:
-                $res = EquipmentBorrow::getFailInfo_l($form_id);
+                $res = EquipmentBorrow::getFormInfo_l($form_id);
                 break;
             case 5:
-                $res = OpenLaboratory::getFailInfo_l($form_id);
+                $res = OpenLaboratory::getFormInfo_l($form_id);
                 break;
 
             default:
@@ -92,7 +92,7 @@ class FormFailController extends Controller
         $res = Form::SearchFormFail($work_id,$value);
 
         return  $res ?
-                \json_success('查询成功',$res,'200') :
+                \json_success('参数'.$value.'查询成功',$res,'200') :
                 \json_fail('没有查到与'.$value.'相关的记录',null,'100');
     }
 

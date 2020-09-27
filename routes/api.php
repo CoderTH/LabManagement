@@ -56,5 +56,5 @@ Route::prefix('ordinadmin/viewform')->namespace('OrdinAdmin')->group(
         Route::get('formlist','FormViewController@getFormList');
         Route::get('forminfo','FormViewController@getViewFormInfo');
         Route::get('search','FormViewController@searchFormBySrc');
-        Route::get('cancelapp','FormViewController@cancelApp');
+        Route::get('cancel','FormViewController@cancelApp');
 });

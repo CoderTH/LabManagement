@@ -42,7 +42,7 @@ class FormViewController extends Controller
 
         return $res ?
                 \json_success('表单列表查询成功',$res,'200') :
-                \json_fail('该表单列表查询失败',null,'100');
+                \json_fail('表单列表查询失败',null,'100');
     }
 
     /**
@@ -73,8 +73,8 @@ class FormViewController extends Controller
         }
 
         return  $res ?
-           \json_success('查询成功',$res,'200') :
-           \json_fail('表单'.$form_id.'信息查询失败',null,'100');
+           \json_success('表单'.$form_id.'信息获取成功',$res,'200') :
+           \json_fail('表单'.$form_id.'信息获取失败',null,'100');
 
     }
 

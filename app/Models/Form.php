@@ -88,9 +88,7 @@ class Form extends Model
                         ->where('approval.status',$permi)
                         ->where('form.work_id','<>',$work)
                         ->get();
-
             return $res;
-
         } catch(Exception $e){
             logError('搜索表单失败，搜索参数为:'.$value,[$e->getMessage()]);
         }
@@ -111,7 +109,7 @@ class Form extends Model
                         ->select('form.form_id','user_info.name','type.form_type','form.created_at')
                         ->where('form.form_id',$value)
                         ->orWhere('form.form_id','like','%'.$value.'%')
-                        ->whereIn('id',[2,4,6,8,10,12])
+                        ->whereIn('approval.status',[2,4,6,8,10,12])
                         ->where('form.work_id',$work)
                         ->get();
 

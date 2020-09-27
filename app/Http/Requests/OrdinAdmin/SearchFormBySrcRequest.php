@@ -26,7 +26,8 @@ class SearchFormBySrcRequest extends FormRequest
     public function rules()
     {
         return [
-            'value' => 'required|max:20'
+            'value' => 'required|max:20',
+            'token'    => 'required'
         ];
     }
 
