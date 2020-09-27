@@ -43,6 +43,7 @@ class EquipmentBorrow extends Model
 
         } catch(Exception $e){
             logError('表单:'.$form_id.'详情查询失败',[$e->getMessage()]);
+            return null;
         }
     }
 

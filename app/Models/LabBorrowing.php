@@ -11,24 +11,6 @@ class LabBorrowing extends Model
     //protected $primaryKey = "form_id";
 
     /**
-     * 查询实验室借用表详情
-     * @author Liangjianhua <github.com/Varsion>
-     * @param [String] $form_id
-     * @return void
-     */
-    // public static function getFormInfo_l($form_id) {
-    //     try {
-    //         $res = self::select('*')
-    //                     ->where('form_id',$form_id)
-    //                     ->get();
-    //         return $res;
-    //     } catch(Exception $e){
-    //         logError('表单:'.$form_id.'信息查询失败',[$e->getMessage()]);
-    //         return null;
-    //     }
-    // }
-
-    /**
      * 获取表单的详情
      * @author Liangjianhua <github.com/Varsion>
      * @param [string] $form_id

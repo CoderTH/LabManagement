@@ -32,6 +32,7 @@ class ApprovalStatus extends Model
             return $res;
         } catch(Exception $e){
             logError('状态流获取失败',[$e->getMessage()]);
+            return null;
         }
     }
 }

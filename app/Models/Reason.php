@@ -33,6 +33,7 @@ class Reason extends Model
 
         } catch(Exception $e){
             logError('插入或更新'.$form_id.'不通过信息失败',[$e->getMessage()]);
+            return null;
         }
     }
 }

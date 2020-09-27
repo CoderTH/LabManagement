@@ -45,6 +45,7 @@ class Form extends Model
         return $res;
         } catch(Exception $e){
             logError('表单列表查询失败',[$e->getMessage()]);
+            return null;
         }
     }
 
@@ -64,6 +65,7 @@ class Form extends Model
 
         } catch(Exception $e){
             logError('表单信息存放表查询失败',[$e->getMessage()]);
+            return null;
         }
     }
 
@@ -91,6 +93,7 @@ class Form extends Model
             return $res;
         } catch(Exception $e){
             logError('搜索表单失败，搜索参数为:'.$value,[$e->getMessage()]);
+            return null;
         }
     }
 
@@ -117,6 +120,7 @@ class Form extends Model
 
         } catch(Exception $e){
             logError('搜索表单失败，搜索参数为:'.$value,[$e->getMessage()]);
+            return null;
         }
     }
 
@@ -150,6 +154,7 @@ class Form extends Model
             return $res;
             } catch(Exception $e){
                 logError('错误表单列表查询失败',[$e->getMessage()]);
+                return null;
             }
     }
 
@@ -185,6 +190,7 @@ class Form extends Model
             return $res;
         } catch(Exception $e){
             logError('成功表单列表获取失败',[$e->getMessage()]);
+            return null;
         }
     }
 
@@ -209,6 +215,7 @@ class Form extends Model
             return $res;
         } catch(Exception $e){
             logError('搜索表单失败，搜索参数为:'.$value,[$e->getMessage()]);
+            return null;
         }
     }
 
@@ -244,6 +251,7 @@ class Form extends Model
             return $res;
         } catch(Exception $e){
             logError('待审批表单列表获取失败',[$e->getMessage()]);
+            return null;
         }
     }
 
@@ -268,6 +276,7 @@ class Form extends Model
             return $res;
         } catch(Exception $e){
             logError('搜索表单失败，搜索参数为:'.$value,[$e->getMessage()]);
+            return null;
         }
     }
 

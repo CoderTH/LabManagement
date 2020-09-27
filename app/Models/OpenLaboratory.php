@@ -11,37 +11,6 @@ class OpenLaboratory extends Model
     //protected $primaryKey = "form_id";
 
     /**
-     * 获取指定表单信息
-     * @author Liangjianhua <github.com/Varsion>
-     * @param [String] $form_id
-     * @return array
-     */
-    // public static function getFormInfo_l($form_id){
-    //     try {
-    //         $form_info = self::select('*')
-    //                         ->where('form_id',$form_id)
-    //                         ->get();
-    //         $stu_list = self::join('open_laboratory_student as stu','open_laboratory.form_id','stu.open_laboratory_id')
-    //                         ->select('stu.*')
-    //                         ->get();
-    //         $res = [
-    //             'form_info'=>$form_info,
-    //             'stu_list' =>$stu_list
-    //         ];
-
-    //         return $res;
-    //     } catch(Exception $e){
-    //         logError('表单列表查询失败',[$e->getMessage()]);
-    //     }
-    // }
-
-    /**
-     * 获取审批失败表单的详情
-     * @author Liangjianhua <github.com/Varsion>
-     * @param [string] $form_id
-     * @return void
-     */
-    /**
      * 获取审批失败表单的详情
      * @author Liangjianhua <github.com/Varsion>
      * @param [string] $form_id

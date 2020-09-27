@@ -24,6 +24,7 @@ class ApprPermi extends Model
             return $res;
         } catch(Exception $e){
             logError('权限审批状态对照失败',[$e->getMessage()]);
+            return null;
         }
     }
 }

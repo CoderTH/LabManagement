@@ -31,6 +31,7 @@ class Approval extends Model
 
         } catch(Exception $e){
             logError('更改成功表单'.$form_id.'状态时失败',[$e->getMessage()]);
+            return null;
         }
     }
 
@@ -55,6 +56,7 @@ class Approval extends Model
 
         } catch(Exception $e){
             logError('更改失败表单'.$form_id.'状态时失败',[$e->getMessage()]);
+            return null;
         }
     }
 
@@ -84,6 +86,7 @@ class Approval extends Model
             return $res;
         } catch(Exception $e){
             logError('表单'.$form_id.'取消失败',[$e->getMessage()]);
+            return null;
         }
     }
 }
