@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class GetFormListRequest extends FormRequest
+class CancelAppRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,7 @@ class GetFormListRequest extends FormRequest
     public function rules()
     {
         return [
-            'class_id' => 'required|alpha_num',
-            'token'    => 'required'
+            'form_id' => 'alpha_num'
         ];
     }
 

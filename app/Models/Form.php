@@ -73,7 +73,7 @@ class Form extends Model
      * @param [String] $value
      * @return void
      */
-    public static function SearchForm($work,$value) {
+    public static function SearchFormApp($work,$value) {
         try {
             $permi = \get_app_status($work);
 
@@ -134,7 +134,7 @@ class Form extends Model
                 $res = self::join('approval','form.form_id','approval.form_id')
                             ->join('user_info','form.work_id','user_info.user_id')
                             ->join('form_type as type','form.form_type_id','type.form_type_id')
-                            ->select('form.form_id','user_info.name','approval.status as approval_status','type.form_type','form.created_at')
+                            ->select('form.form_id','type.form_type','form.created_at')
                             ->where('form.work_id',$work)
                             ->whereIn('approval.status',[2,4,6,8,10,12])
                             ->paginate();
@@ -142,7 +142,7 @@ class Form extends Model
                 $res = self::join('approval','form.form_id','approval.form_id')
                             ->join('user_info','form.work_id','user_info.user_id')
                             ->join('form_type as type','form.form_type_id','type.form_type_id')
-                            ->select('form.form_id','user_info.name','approval.status as approval_status','type.form_type','form.created_at')
+                            ->select('form.form_id','type.form_type','form.created_at')
                             ->where('form.form_type_id',$class)
                             ->where('form.work_id',$work)
                             ->whereIn('approval.status',[2,4,6,8,10,12])
@@ -154,5 +154,125 @@ class Form extends Model
                 logError('错误表单列表查询失败',[$e->getMessage()]);
             }
     }
+
+    /**
+     * 获取成功表单列表
+     * @author Liangjianhua <github.com/Varsion>
+     * @param [int] $class
+     * @param [string] $work
+     * @return void
+     */
+    public static function getSucFormList($class,$work) {
+        try {
+
+            if(!$class){
+                $res = self::join('approval','form.form_id','approval.form_id')
+                            ->join('user_info','form.work_id','user_info.user_id')
+                            ->join('form_type as type','form.form_type_id','type.form_type_id')
+                            ->select('form.form_id','type.form_type','form.created_at')
+                            ->where('form.work_id',$work)
+                            ->where('approval.status',11)
+                            ->paginate();
+            } else {
+                $res = self::join('approval','form.form_id','approval.form_id')
+                            ->join('user_info','form.work_id','user_info.user_id')
+                            ->join('form_type as type','form.form_type_id','type.form_type_id')
+                            ->select('form.form_id','type.form_type','form.created_at')
+                            ->where('form.form_type_id',$class)
+                            ->where('form.work_id',$work)
+                            ->where('approval.status',11)
+                            ->paginate();
+            }
+
+            return $res;
+        } catch(Exception $e){
+            logError('成功表单列表获取失败',[$e->getMessage()]);
+        }
+    }
+
+    /**
+     * 搜索成功表单
+     * @author Liangjianhua <github.com/Varsion>
+     * @param [type] $work
+     * @param [type] $value
+     * @return void
+     */
+    public static function SearchFormSuc($work,$value) {
+        try {
+            $res = self::join('approval','form.form_id','approval.form_id')
+                        ->join('user_info','form.work_id','user_info.user_id')
+                        ->join('form_type as type','form.form_type_id','type.form_type_id')
+                        ->select('form.form_id','user_info.name','type.form_type','form.created_at')
+                        ->where('form.form_id',$value)
+                        ->orWhere('form.form_id','like','%'.$value.'%')
+                        ->where('approval.status',11)
+                        ->where('form.work_id',$work)
+                        ->get();
+            return $res;
+        } catch(Exception $e){
+            logError('搜索表单失败，搜索参数为:'.$value,[$e->getMessage()]);
+        }
+    }
+
+    /**
+     * 获取待审批表单列表
+     * @author Liangjianhua <github.com/Varsion>
+     * @param [int] $class
+     * @param [string] $work
+     * @return void
+     */
+    public static function getViewFormList($class,$work) {
+        try {
+
+            if(!$class){
+                $res = self::join('approval','form.form_id','approval.form_id')
+                            ->join('user_info','form.work_id','user_info.user_id')
+                            ->join('form_type as type','form.form_type_id','type.form_type_id')
+                            ->select('form.form_id','type.form_type','form.created_at')
+                            ->where('form.work_id',$work)
+                            ->whereIn('approval.status',[1,3,5,7,9])
+                            ->paginate();
+            } else {
+                $res = self::join('approval','form.form_id','approval.form_id')
+                            ->join('user_info','form.work_id','user_info.user_id')
+                            ->join('form_type as type','form.form_type_id','type.form_type_id')
+                            ->select('form.form_id','type.form_type','form.created_at')
+                            ->where('form.form_type_id',$class)
+                            ->where('form.work_id',$work)
+                            ->whereIn('approval.status',[1,3,5,7,9])
+                            ->paginate();
+            }
+
+            return $res;
+        } catch(Exception $e){
+            logError('待审批表单列表获取失败',[$e->getMessage()]);
+        }
+    }
+
+    /**
+     * 搜索待审批表单列表
+     * @author Liangjianhua <github.com/Varsion>
+     * @param [type] $work
+     * @param [type] $value
+     * @return void
+     */
+    public static function SearchFormView($work,$value) {
+        try {
+            $res = self::join('approval','form.form_id','approval.form_id')
+                        ->join('user_info','form.work_id','user_info.user_id')
+                        ->join('form_type as type','form.form_type_id','type.form_type_id')
+                        ->select('form.form_id','user_info.name','type.form_type','form.created_at')
+                        ->where('form.form_id',$value)
+                        ->orWhere('form.form_id','like','%'.$value.'%')
+                        ->whereIn('approval.status',[1,3,5,7,9])
+                        ->where('form.work_id',$work)
+                        ->get();
+            return $res;
+        } catch(Exception $e){
+            logError('搜索表单失败，搜索参数为:'.$value,[$e->getMessage()]);
+        }
+    }
+
+
 
 }

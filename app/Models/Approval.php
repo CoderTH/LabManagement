@@ -59,8 +59,31 @@ class Approval extends Model
     }
 
 
-    public static function test() {
-        $res = DB::select('select * from approval where status%2 = 0');
-        return $res;
+    /**
+     * 取消申请
+     * @author Liangjianhua <github.com/Varsion>
+     * @param [type] $form_id
+     * @return void
+     */
+    public static function cancelApp($form_id) {
+        try{
+            $changeStatus = self::where('form_id',$form_id)
+                                ->update(['status' => 12]);
+
+            $getApp = self::select('approval_id')
+                            ->where('form_id',$form_id)
+                            ->get();
+            //var_dump($getApp);
+
+
+            $appID = $getApp[0]->approval_id;
+
+
+            $res = DB::insert('insert into reasons (approval_id, reason,created_at) values (?, ?, ?)', [$appID, '用户取消申请',now()]);
+
+            return $res;
+        } catch(Exception $e){
+            logError('表单'.$form_id.'取消失败',[$e->getMessage()]);
+        }
     }
 }

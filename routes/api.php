@@ -20,22 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /**
  * @author Liangjianhua <github.com/Varsion>
  */
-Route::prefix('ordinadmin')->namespace('OrdinAdmin')->group(
-    function () {
-        Route::get('indexdata','IndexController@getIndexData');
-});
-
-/**
- * @author Liangjianhua <github.com/Varsion>
- */
 Route::prefix('ordinadmin/approval')->namespace('OrdinAdmin')->group(
     function () {
         Route::get('formlist','ApprovalController@getFormList');
         Route::get('forminfo','ApprovalController@getFormInfo');
         Route::get('search','ApprovalController@searchFormBySrc');
-        Route::get('approval','ApprovalController@approveForm');
-
-        Route::get('test','ApprovalController@test');
+        Route::post('approval','ApprovalController@approveForm');
 });
 
 /**
@@ -45,8 +35,26 @@ Route::prefix('ordinadmin/failform')->namespace('OrdinAdmin')->group(
     function () {
         Route::get('formlist','FormFailController@getFormList');
         Route::get('forminfo','FormFailController@getFailFormInfo');
-        Route::get('search','ApprovalController@searchFormBySrc');
-        Route::get('approval','ApprovalController@approveForm');
+        Route::get('search','FormFailController@searchFormBySrc');
+});
 
-        Route::get('test','FormFailController@test');
+/**
+ * @author Liangjianhua <github.com/Varsion>
+ */
+Route::prefix('ordinadmin/sucform')->namespace('OrdinAdmin')->group(
+    function () {
+        Route::get('formlist','FormSucController@getFormList');
+        Route::get('forminfo','FormSucController@getSucFormInfo');
+        Route::get('search','FormSucController@searchFormBySrc');
+});
+
+/**
+ * @author Liangjianhua <github.com/Varsion>
+ */
+Route::prefix('ordinadmin/viewform')->namespace('OrdinAdmin')->group(
+    function () {
+        Route::get('formlist','FormViewController@getFormList');
+        Route::get('forminfo','FormViewController@getViewFormInfo');
+        Route::get('search','FormViewController@searchFormBySrc');
+        Route::get('cancelapp','FormViewController@cancelApp');
 });
