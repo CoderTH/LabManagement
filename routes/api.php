@@ -19,6 +19,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+Route::prefix('stuadmin')->namespace('StuAdmin')->group(function (){
+
+    Route::get('/insert','StuLeaderController@insert');
+    Route::get('/getall','StuLeaderController@getAll');
+    Route::get('/getbyid','StuLeaderController@getById');
+    Route::get('/getupdateinfo','StuLeaderController@getUpdateInfo');
+    Route::get('/update','StuLeaderController@update');
+    Route::get('/index','StuLeaderController@index');
+
+});
+
+
+
 /**
  * @author HuWeiChen <github.com/nathaniel-kk>
  */
@@ -101,6 +114,7 @@ Route::prefix('oAuth/user')->namespace('OAuth\User')->group(function () {
     Route::post('logout', 'AuthController@logout'); //退出登陆
     Route::post('refresh', 'AuthController@refresh'); //刷新token
 });
+
 
 
 
