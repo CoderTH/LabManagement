@@ -35,9 +35,9 @@ class FinalLabTeach extends Model
      * 当关联的表插入失败是 删除 对应的 关联的表
      * @param $work_id
      */
-    public static function tsy_delete($work_id){
+    public static function tsy_delete($form_id){
         try {
-            FinalLabTeach::where('work_id',$work_id)->delete();
+            FinalLabTeach::where('form_id',$form_id)->delete();
         }catch (Exception $e){
             Logger::Error('删除失败',[$e->getMessage()]);
         }

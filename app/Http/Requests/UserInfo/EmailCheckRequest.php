@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\UserInfo;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class EmailCheckRequest extends FormRequest
@@ -29,7 +29,7 @@ class EmailCheckRequest extends FormRequest
             //
             'old_email'=>'required|regex:/^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/',
             'new_email'=>'required|regex:/^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/',
-            'token'=>'required|alpha_dash'
+//            'token'=>'required|alpha_dash'
         ];
     }
 
@@ -38,6 +38,6 @@ class EmailCheckRequest extends FormRequest
      */
     protected function failedValidation(Validator $validator)
     {
-        throw (new HttpResponseException(response()->fail(422, '参数错误!', $validator->errors()->all(), 422)));
+        throw (new HttpResponseException(json_fail("参数错误",$validator->errors()->all(),422)));
     }
 }

@@ -47,6 +47,6 @@ class LabBorrowingRequest extends FormRequest
      */
     protected function failedValidation(Validator $validator)
     {
-        throw (new HttpResponseException(response()->fail(422, '参数错误!', $validator->errors()->all(), 422)));
+        throw (new HttpResponseException(json_fail("参数错误",$validator->errors()->all(),422)));
     }
 }

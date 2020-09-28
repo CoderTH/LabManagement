@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use PHPUnit\Util\Exception;
+use mysql_xdevapi\Exception;
 use Symfony\Component\HttpKernel\Log\Logger;
 
 class Approval extends Model
@@ -26,6 +26,18 @@ class Approval extends Model
             return true;
         }catch(Exception $e){
             logger::Error('插入失败'.[$e->getMessage()]);
+        }
+    }
+
+    /**
+     * 当三个表中插入失败时当前表如果被插入成功的 将其删除
+     * @author tangshengyou
+     */
+    public static function tsy_delete($form_id){
+        try{
+            Approval::where('form_id',$form_id);
+        }catch(Exception $e){
+            logger::Error('删除失败',[$e->getMessage()]);
         }
     }
 }

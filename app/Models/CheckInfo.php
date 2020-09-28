@@ -20,16 +20,27 @@ class CheckInfo extends Model
      */
     public static function tsy_save($abc){
         try {
+//            CheckInfo::create([
+//                'inspection_id'=>$abc['inspection_id'],
+//                'lab_id'=>$abc['lab_id'],
+//                'lab_name'=>$abc['lab_name'],
+//                 'class_name'=>$abc['class_name'],
+//                 'teacher_name'=>$abc['teacher_name'],
+//                  'teaching_operation'=>$abc['teaching_operation'],
+//                 'open_lab_operation'=>$abc['open_lab_operation'],
+//                    'note'=>$abc['note'],
+//            ]
+//            );
             CheckInfo::create([
-                'inspection_id'=>$abc['inspection_id'],
-                'lab_id'=>$abc['lab_id'],
-                'lab_name'=>$abc['lab_name'],
-                 'class_name'=>$abc['class_name'],
-                 'teacher_name'=>$abc['teacher_name'],
-                  'teaching_operation'=>$abc['teaching_operation'],
-                 'open_lab_operation'=>$abc['open_lab_operation'],
+                    'inspection_id'=>$abc['inspection_id'],
+                    'lab_id'=>$abc['lab_id'],
+                    'lab_name'=>$abc['lab_name'],
+                    'class_name'=>$abc['class_name'],
+                    'teacher_name'=>$abc['teacher_name'],
+                    'teaching_operation'=>$abc['teaching_operation'],
+                    'open_lab_operation'=>$abc['open_lab_operation'],
                     'note'=>$abc['note'],
-            ]
+                ]
             );
             return true;
         }catch (Exception $e){

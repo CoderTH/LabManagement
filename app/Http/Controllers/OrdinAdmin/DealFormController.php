@@ -48,6 +48,15 @@ class DealFormController extends Controller
         if ($res==true && $res1 == true && $res2){
             return json_fail('成功',null,200);
         }else{
+            if (!$res){
+                LabBorrowing::tsy_delete($request['form_id']);
+            }
+            if (!$res1){
+                Form::tsy_delete($request['form_id']);
+            }
+            if (!$res2){
+                Approval::tsy_delete($request['form_id']);
+            }
             return json_fail('失败',null,100);
         }
     }
@@ -69,9 +78,18 @@ class DealFormController extends Controller
         if ($res==true && $res1 == true && $res2==true && $res3){
             return json_fail('成功',null,200);
         }else{
-            FinalLabTeach::tsy_delete($request['work_id']);
-            Form::tsy_delete($request['work_id']);
-            CheckInfo::tsy_delete($request['form_id']);
+            if (!$res){
+                FinalLabTeach::tsy_delete($request['form_id']);
+            }
+            if (!$res1){
+                Form::tsy_delete($request['form_id']);
+            }
+            if (!$res2){
+                CheckInfo::tsy_delete($request['form_id']);
+            }
+            if (!$res3){
+                Approval::tsy_delete($request['form_id']);
+            }
             return json_fail('失败',null,100);
         }
     }
@@ -99,19 +117,29 @@ class DealFormController extends Controller
         $request['form_id'] = 'E'.date("ymdis");
         $request['form_type_id']=5;
         $date = $request['student'];
-        $res1 = Form::tsy_save($request);
-        $res2 = OpenLaboratory::tsy_save($request);
-        $res3 = OpenLabStudent::tsy_save($date,$request['form_id']);
-        $res = Approval::tsy_save($request['form_id']);
+        $res = Form::tsy_save($request);
+        $res1 = OpenLaboratory::tsy_save($request);
+        $res2 = OpenLabStudent::tsy_save($date,$request['form_id']);
+        $res3 = Approval::tsy_save($request['form_id']);
         if ($res3==true && $res1 == true && $res2==true && $res){
             return json_fail('成功',null,200);
         }else{
-            Form::tsy_delete($request['work_id']);
-            OpenLaboratory::tsy_delete($request['form_id']);
-            OpenLabStudent::tsy_delete($request['form_id']);
+            if (!$res){
+                Form::tsy_delete($request['form_id']);
+            }
+            if (!$res1){
+                OpenLaboratory::tsy_delete($request['form_id']);
+            }
+            if (!$res2){
+                OpenLabStudent::tsy_delete($request['form_id']);
+            }
+            if (!$res3){
+                Approval::tsy_delete($request['form_id']);
+            }
             return json_fail('失败',null,100);
         }
     }
+    //借用申请表
     public function addEquipment(EquipmentRequest $request){
         $date1 = $request['queipmentarray'];
 //        var_dump($date1[1]['number']);
@@ -143,9 +171,18 @@ class DealFormController extends Controller
         if ($res==true && $res1 == true && $res2==true && $res3){
             return json_fail('成功',null,200);
         }else{
-            Form::tsy_delete($request['work_id']);
-            EquipmentBorrow::tsy_delete($request['form_id']);
-            EquipmentBorrowList::tsy_delete($request['form_id']);
+            if (!$res){
+                Form::tsy_delete($request['form_id']);
+            }
+            if (!$res1){
+                EquipmentBorrow::tsy_delete($request['form_id']);
+            }
+            if (!$res2){
+                EquipmentBorrowList::tsy_delete($request['form_id']);
+            }
+            if (!$res3){
+                Approval::tsy_delete($request['form_id']);
+            }
             return json_fail('失败',null,100);
         }
     }

@@ -24,7 +24,8 @@ class EmailCheck extends Model
         try {
             EmailCheck::create([
                 'work_id'=>$abc['work_id'],
-                'email'=>$abc['new_email']
+                'email'=>$abc['new_email'],
+                'date'=>$abc['time']
             ]);
             return true;
         }catch (Exception $e){
