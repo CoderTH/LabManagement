@@ -20,3 +20,6 @@ require_once "encrypt.php";
 
 /* 引入请求相关辅助函数 */
 require_once "curl.php";
+
+/* 引入请求相关辅助函数 */
+require_once "getpermi.php";
