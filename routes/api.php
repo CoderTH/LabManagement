@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 /**
  * @author Liangjianhua <github.com/Varsion>
  */
@@ -58,3 +59,21 @@ Route::prefix('ordinadmin/viewform')->namespace('OrdinAdmin')->group(
         Route::get('search','FormViewController@searchFormBySrc');
         Route::get('cancel','FormViewController@cancelApp');
 });
+
+Route::prefix('oAuth/sAdmin')->namespace('OAuth\SAdmin')->group(function () {
+    Route::post('login', 'AuthController@login'); //登陆
+    Route::post('logout', 'AuthController@logout'); //退出登陆
+    Route::post('refresh', 'AuthController@refresh'); //刷新token
+});
+Route::prefix('oAuth/admin')->namespace('OAuth\Admin')->group(function () {
+    Route::post('login', 'AuthController@login'); //登陆
+    Route::post('logout', 'AuthController@logout'); //退出登陆
+    Route::post('refresh', 'AuthController@refresh'); //刷新token
+});
+Route::prefix('oAuth/user')->namespace('OAuth\User')->group(function () {
+    Route::post('login', 'AuthController@login'); //登陆
+    Route::post('logout', 'AuthController@logout'); //退出登陆
+    Route::post('refresh', 'AuthController@refresh'); //刷新token
+});
+
+
