@@ -19,6 +19,27 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+
+Route::group(['namespace'=>'OrdinAdmin','prefix'=>'ordinadmin'],function (){
+    //填报实验室借用
+   Route::post('addlabborrowing','DealFormController@addLabBorrowing');
+   //填报期末检查表
+   Route::post('addfinallab','DealFormController@addFinalLab');
+   //填报开放实验室申请
+   Route::post('addopenlab','DealFormController@addOpenLab');
+   //填报仪器借用表
+   Route::post('addequipment','DealFormController@addEquipment');
+});
+
+Route::group(['namespace'=>'UserInfo','prefix'=>'userinfo'],function (){
+    //获取新老邮箱发送邮件
+    Route::post('emailfs','UserController@emailFS');
+
+//用户点击链接进行验证
+    Route::get('emailcheck','UserController@emailCheck');
+});
+
+
 Route::prefix('stuadmin')->namespace('StuAdmin')->group(function (){
 
     Route::get('/insert','StuLeaderController@insert');
@@ -114,6 +135,7 @@ Route::prefix('oAuth/user')->namespace('OAuth\User')->group(function () {
     Route::post('logout', 'AuthController@logout'); //退出登陆
     Route::post('refresh', 'AuthController@refresh'); //刷新token
 });
+
 
 
 

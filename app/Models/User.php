@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\UserInfo;
@@ -28,6 +29,7 @@ class User extends \Illuminate\Foundation\Auth\User implements JWTSubject,Authen
     {
         return self::getKey();
     }
+
 
     /**
      * 权限分配页面展示
