@@ -30,6 +30,20 @@ class User extends \Illuminate\Foundation\Auth\User implements JWTSubject,Authen
         return self::getKey();
     }
 
+
+    public static function getPermi($id) {
+        try {
+
+            $data = self::select('permission_id')
+                        ->where('work_id',$id)
+                        ->get();
+            $permi = $data[0]->permission_id;
+            return $permi;
+        } catch(Exception $e){
+            logError('获取用户权限失败',[$e->getMessage()]);
+            return null;
+}
+      }
     /**
      * 创建用户
      *
@@ -47,6 +61,7 @@ class User extends \Illuminate\Foundation\Auth\User implements JWTSubject,Authen
             //\App\Utils\Logs::logError('添加用户失败!', [$e->getMessage()]);
             die($e->getMessage());
             return false;
+
         }
     }
 }
